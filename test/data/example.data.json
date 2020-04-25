@@ -1,0 +1,10 @@
+{
+  "username": "example username",
+  "password": "example password",
+  "pageURL": "https://webdriver.io/docs/gettingstarted.html",
+  "pageTitle": "Getting Started · WebdriverIO",
+  "elements": [
+    { "description": "postHeaderTitle", "locator": ".postHeaderTitle" },
+    { "description": "headerContainer", "locator": ".fixedHeaderContainer" }
+  ]
+}
