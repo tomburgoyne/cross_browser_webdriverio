@@ -14,7 +14,11 @@
   },
   "main": "./node_modules/.bin/wdio",
   "scripts": {
-    "test": "wdio wdio.conf.js"
+    "test:all": "wdio ./browserConfig/wdio.all.conf.js",
+    "test:chrome": "wdio ./browserConfig/wdio.chrome.conf.js",
+    "test:firefox": "wdio ./browserConfig/wdio.firefox.conf.js",
+    "test:ie11": "wdio ./browserConfig/wdio.ie11.conf.js",
+    "test:edge": "wdio ./browserConfig/wdio.edge.conf.js"
   },
   "keywords": [
     "test automation",

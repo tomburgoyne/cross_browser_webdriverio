@@ -1,0 +1,4 @@
+# This file ensures this folder is added as part of the respository
+*
+!.gitignore
+logs

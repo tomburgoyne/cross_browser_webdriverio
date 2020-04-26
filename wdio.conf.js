@@ -1,3 +1,5 @@
+const customBrowserConfiguration = require("./wdio.browsers.setup.js");
+
 exports.config = {
     //
     // ====================
@@ -44,20 +46,8 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [
-        {
-            maxInstances: 5,
-            browserName: "firefox",
-            "moz:firefoxOptions": {
-                args: ["-headless"],
-            },
-        },
-        {
-            maxInstances: 5,
-            browserName: "chrome",
-            "goog:chromeOptions": {
-                args: ["--headless", "--disable-gpu"],
-            },
-        },
+        // NOTE: capabilities managed in ./browserConfig/ folder (per browser)
+        // See: https://webdriver.io/docs/options.html#capabilities-1
     ],
     //
     // ===================
@@ -106,8 +96,21 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ["selenium-standalone"],
-
+    services: [
+        [
+            "selenium-standalone",
+            {
+                // See https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-selenium-standalone-service#configuration for configuration guide
+                // We want to use a 32 bit version of IE11 (due to https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/5116#c9)
+                // We specify WebdriverIO to install and use 32 bit version of IE11 (rather than default 64-bit). Other browsers are managed by
+                // the repository itself (the customBrowserConfiguration file just uses what is current/default version used)
+                logPath: "./results/logs",
+                installArgs: customBrowserConfiguration,
+                args: customBrowserConfiguration,
+            },
+        ],
+    ],
+    //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html
@@ -126,7 +129,6 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
     reporters: ["spec"],
-
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
