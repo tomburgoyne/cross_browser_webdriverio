@@ -29,6 +29,7 @@ You will need to edit the following in that file before use:
 1. Edit `baseUrl` property to be the root URL of your test environment
 2. Edit `loglevel` property to set the logging level you require (the default is 'info' level)
 3. Edit `reporters` property if you want to set to use a specific reporter (the default is the 'spec' reporter)
+4. Browser capabilities (`capabilities`) can be edited in the `./browserConfig` folder (rather than directly in the `wdio.conf.js` file). This allows you to define the browsers you wish your tests to run on. The default is Chrome (headless), Firefox (headless) and Internet Explorer 11 and MS Edge (legacy)
 
 ### Internet Explorer 11 setup/support
 
@@ -38,9 +39,9 @@ There are a number of other suggested setting tweaks and registry edits for the 
 
 When creating tests, you also need to be mindful that IE11 does not support more modern flavours of JavaScript (e.g. template literals, arrow functions, asynchronous code etc.). Given your test code is being executed directly in the browser, always double check that your code will support **all** browsers under test by default. You can check whether something is supported by going to [here](https://caniuse.com/). Eventually I will look to use something like [Babel](https://babeljs.io/) to compile code down which would help mitigate this.
 
-### Microsoft Edge setup/support
+### Microsoft Edge (legacy) setup/support
 
-Due to changes made by Microsoft in 2018, there are a number of things needing doing to execute tests successfully using Edge (see [here](https://blogs.windows.com/msedgedev/2018/06/14/webdriver-w3c-recommendation-feature-on-demand/#0q5AAJXB76iei8zE.97)). For Windows 10, you will need to enable 'Developer' mode which by default will install/enable the optional feature 'WebDriver'. By doing this and providing the following to `javaArgs` in the wdio.conf.js file.
+Due to changes made by Microsoft in 2018, there are a number of things needing doing to execute tests successfully using Edge (see [here](https://blogs.windows.com/msedgedev/2018/06/14/webdriver-w3c-recommendation-feature-on-demand/#0q5AAJXB76iei8zE.97)). For Windows 10, you will need to enable 'Developer' mode which by default will install/enable the optional feature 'WebDriver'. By doing this and providing the following to `javaArgs` in the wdio.conf.js file. By doing this and providing the following to `javaArgs` in the wdio.conf file (see `wdio.browsers.setup.js` which has this done by default/is a handy wrapper for wdio configuration).
 
 ```javascript
 javaArgs: [
@@ -87,9 +88,9 @@ Any test data should be added to the `test/data` folder a need to be in the file
 
 ### Running tests
 
-To run tests from a local environment, simply run `npx wdio wdio.conf.js`.
+To run tests from a local environment, simply run `npm test:[option]` (All, Chrome, Firefox, IE11 and Edge) from the root of the project. This initiates `WebdriverIO` to run all tests it finds. Test run configuration (including browser configuration) can be found in the `./browserConfig/` folder.
 
-Alternatively default scripts can be configured in `package.json` file under the `scripts` property.
+These default scripts can be are configured in `package.json` file under the `scripts` property.
 
 If using Visual Code, you can simply initiate a test run by clicking play on the relevant npm script in the explorer window pane.
 
