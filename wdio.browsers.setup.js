@@ -16,7 +16,7 @@ module.exports = {
     drivers: {
         chrome: {
             // Update with latest version number from here: https://chromedriver.chromium.org/downloads
-            version: "81.0.4044.69",
+            version: "83.0.4103.39",
             arch: defaultConfiguration.drivers.chrome.arch,
             baseURL: defaultConfiguration.drivers.chrome.baseURL,
         },
