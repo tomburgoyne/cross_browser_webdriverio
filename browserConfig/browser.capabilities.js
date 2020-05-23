@@ -1,3 +1,5 @@
+"use strict";
+
 /** Note(s):
  * @property {integer} maxInstances can get overwritten per capability. So if you have an in-house Selenium
  * grid with only 5 chrome instances available you can make sure that not more than

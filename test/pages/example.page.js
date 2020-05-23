@@ -1,3 +1,5 @@
+"use strict";
+
 const Page = require("./page.js");
 
 class ExamplePage extends Page {
