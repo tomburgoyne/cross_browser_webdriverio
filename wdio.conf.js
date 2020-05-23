@@ -1,3 +1,5 @@
+"use strict";
+
 const customBrowserConfiguration = require("./wdio.browsers.setup.js");
 
 exports.config = {

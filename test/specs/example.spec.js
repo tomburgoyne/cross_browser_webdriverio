@@ -1,3 +1,5 @@
+"use strict";
+
 const assert = require("assert");
 const ExamplePage = require("../pages/example.page.js");
 

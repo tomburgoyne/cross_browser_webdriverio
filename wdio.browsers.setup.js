@@ -1,3 +1,5 @@
+"use strict";
+
 // Require default config file from selenium-standalone package to ensure project kept up to date if dependencies change
 // Note - this seems to be somewhat out of date, so specific versions are explicitly given below to keep project up to date
 const defaultConfiguration = require(".//node_modules//selenium-standalone//lib//default-config.js");
