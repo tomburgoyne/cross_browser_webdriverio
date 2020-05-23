@@ -2,6 +2,7 @@
   "env": {
     "browser": true,
     "commonjs": true,
+    "node": true,
     "es6": true,
     "mocha": true
   },
@@ -20,6 +21,7 @@
   },
   "rules": {
     "prettier/prettier": "error",
-    "strict": ["error", "global"]
+    "strict": ["error", "global"],
+    "semi": ["error", "always"]
   }
 }
