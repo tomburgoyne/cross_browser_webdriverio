@@ -29,9 +29,13 @@ You will need to edit the following in that file before use:
 1. Edit `baseUrl` property to be the root URL of your test environment
 2. Edit `loglevel` property to set the logging level you require (the default is 'info' level)
 3. Edit `reporters` property if you want to set to use a specific reporter (the default is the 'spec' reporter)
-4. Browser capabilities (`capabilities`) can be edited in the `./browserConfig` folder (rather than directly in the `wdio.conf.js` file). This allows you to define the browsers you wish your tests to run on. The default is Chrome (headless), Firefox (headless) and Internet Explorer 11 and MS Edge (legacy)
+4. Browser capabilities (`capabilities`) can be edited in the `./browserConfig` folder (rather than directly in the `wdio.conf.js` file). This allows you to define the browsers you wish your tests to run on. The default is Chrome (headless), Firefox (headless) and Internet Explorer 11 (32 bit) and MS Edge (legacy)
 
-### Internet Explorer 11 setup/support
+Note - browser drivers are downloaded automatically at the point of first running your tests and not during the `npm install` step (in case you were wondering).
+
+### Internet Explorer 11 setup/support (32 bit)
+
+Note - the 32 bit version of this driver is preferred and used in this project (as recommended [here](https://www.selenium.dev/downloads/)).
 
 There are a number of things needing to be configured to run tests successfully in IE11. Firstly, in 'Internet Options' > 'Security' tab set all your levels for each zone to the same security level (e.g. 'Medium'). You also need to **disable** 'Enhanced Mode' on **all zones** or have it set to the same level across **all zones**. The test runner will not run tests if it detects any zone is not disabled.
 
@@ -94,7 +98,7 @@ These default scripts can be are configured in `package.json` file under the `sc
 
 If using Visual Code, you can simply initiate a test run by clicking play on the relevant npm script in the explorer window pane.
 
-Test files can be excluded by using the `exclude: ["filename.spec.js"]` property in the wdio.conf.js file.
+Test files can be excluded by using the `exclude: ["filename.spec.js"]` property in the `wdio.conf.js` file.
 
 ## Code formatting and linting
 
