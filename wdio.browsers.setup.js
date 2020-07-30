@@ -5,9 +5,11 @@
 const defaultConfiguration = require(".//node_modules//selenium-standalone//lib//default-config.js");
 
 /* 
-In order to ensure we use the 32 bit version of IE11 everytime and not have to maintain other browsers, this file is passed into wdio.conf.js
-to override the version of IE11 used but use whatever @wdio/selenium-standalone-service wants for other browsers.
+For IE 11: In order to ensure we use the 32 bit version of IE11 every time this file is passed into wdio.conf.js
+to override the version of IE11 defined in @wdio/selenium-standalone-service.
 See: https://stackoverflow.com/questions/43235474/how-i-can-start-ie-in-32bit-mode-in-webdriver-io
+
+For all other browsers we explicitly set the version of the driver we want to use in this file.
 */
 
 module.exports = {
@@ -16,7 +18,7 @@ module.exports = {
     drivers: {
         chrome: {
             // Update with latest version number from here: https://chromedriver.chromium.org/downloads
-            version: "83.0.4103.39",
+            version: "84.0.4147.30",
             arch: defaultConfiguration.drivers.chrome.arch,
             baseURL: defaultConfiguration.drivers.chrome.baseURL,
         },
@@ -28,16 +30,16 @@ module.exports = {
             baseURL: "https://selenium-release.storage.googleapis.com",
         },
         firefox: {
-            version: "0.26.0",
+            version: "0.27.0",
             arch: defaultConfiguration.drivers.firefox.arch,
             baseURL: defaultConfiguration.drivers.firefox.baseURL,
         },
-        // This is essentially redundant if passing javaArgs below for MS Edge, however if WebDriverIO update project in future then can switch back to this
+        // This is essentially redundant if passing javaArgs below for MS Edge (legacy), however if WebDriverIO update project in future then can switch back to this
         edge: {
             version: defaultConfiguration.drivers.edge.version,
         },
     },
-    // See guidance for adding javaArgs for MS Edge here: https://github.com/webdriverio/webdriverio/issues/3196#issuecomment-450656116
+    // See guidance for adding javaArgs for MS Edge (legacy) here: https://github.com/webdriverio/webdriverio/issues/3196#issuecomment-450656116
     javaArgs: [
         "-Dwebdriver.edge.driver=C:\\Windows\\System32\\MicrosoftWebDriver.exe",
     ],
