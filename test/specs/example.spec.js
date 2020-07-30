@@ -21,9 +21,9 @@ describe("Example page - WebdriverIO Getting Started page", () => {
 });
 
 describe("Example page - using a JSON data file to generate tests", () => {
-    // create a new object of just the elements object returned from the .json file using require to get the file
+    // create a new array of just the elements object returned from the .json file using require to get the file
     const elements = require("../data/example.data.json").elements;
-    // use array.map to iterate/loop through elements object and create a test per element object found
+    // use forEach to iterate/loop through elements array and create a test per element object found
     elements.forEach((element) => {
         it(`Checks that ${element.description} exists on page`, async () => {
             const el = await $(element.locator);
