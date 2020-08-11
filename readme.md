@@ -20,7 +20,7 @@
 
 ## Example tests
 
-This project has examples of tests written for a number of public websites (to give you a flavour of what you could).
+This project has examples of tests written for a number of public websites (to give you a flavour of what you could do).
 
 The websites tested include:
 * [WebdriverIO 'Getting Started' page](https://webdriver.io/docs/gettingstarted.html) - the getting started page from the official WebdriverIO documentation
@@ -41,7 +41,7 @@ You will need to edit the following in that file before use:
 3. Edit `reporters` property if you want to set to use a specific reporter (the default is the 'spec' reporter)
 4. Browser capabilities (`capabilities`) can be edited in the `./browserConfig` folder (rather than directly in the `wdio.conf.js` file). This allows you to define the browsers you wish your tests to run on. The default is Chrome (headless), Firefox (headless) and Internet Explorer 11 (32 bit) and MS Edge (legacy)
 
-Note - browser drivers are downloaded automatically at the point of first running your tests and not during the `npm install` step (in case you were wondering).
+Note - browser drivers are downloaded automatically at the point of first running your tests and not during the `npm install` step (in case you were wondering). This is via the `selenium-standalone-service`.
 
 ### Internet Explorer 11 setup/support (32 bit)
 
@@ -90,6 +90,8 @@ This project was initially set up with [Visual Studio Code](https://code.visuals
 * npm (eg2.vscode-npm-script)
 * npm Intellisense (christian-kohler.npm-intellisense)
 
+You may also want to look for ES6 Mocha and WebdriverIO extensions too.
+
 ### Test location and file format
 
 Tests should be added to the `test/specs` folder a need to be in the file format of `<name>.spec.js`. Any file that meets that file naming convention will be evaluated and run if possible. You can configure what tests to be run by editing the `specs: ["./test/specs/**/*.spec.js"]` property in the wdio.conf files.
@@ -100,7 +102,7 @@ This project uses a `Page Object Pattern` to abstract any page information away 
 
 ### Test data
 
-Any test data should be added to the `test/data` folder a need to be in the file format of `<name>.data.json`.
+Any test data should be added to the `test/data` folder and needs to be in the file format of `<name>.data.json`.
 
 ### Running tests
 
