@@ -10,6 +10,7 @@ to override the version of IE11 defined in @wdio/selenium-standalone-service.
 See: https://stackoverflow.com/questions/43235474/how-i-can-start-ie-in-32bit-mode-in-webdriver-io
 
 For all other browsers we explicitly set the version of the driver we want to use in this file.
+Guidance on selenium-standalone-servier can be found here: https://webdriver.io/docs/selenium-standalone-service.html
 */
 
 module.exports = {

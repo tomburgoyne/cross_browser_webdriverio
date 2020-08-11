@@ -1,9 +1,4 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2018"
-  },
-  "exclude": ["node_modules"],
   "include": [
     "**/*.js",
     "**/*.json",

@@ -6,6 +6,7 @@
 
 * [Node.js](https://nodejs.org/en/) - v12 upwards (use latest LTS version)
 * [npm/cli](https://github.com/npm/cli) - v6 upwards (bundled with Node.js) - to update to latest stable release, run `npm install -g npm@latest`
+* [Java](https://java.com/en/download/) - v8 (required to use `selenium-standalone-server`)
 
 ## Main packages used
 
@@ -41,7 +42,7 @@ There are a number of things needing to be configured to run tests successfully 
 
 There are a number of other suggested setting tweaks and registry edits for the host machine running the tests. See [here](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver#required-configuration) for offical guidance.
 
-When creating tests, you also need to be mindful that IE11 does not support more modern flavours of JavaScript (e.g. template literals, arrow functions, asynchronous code etc.). Given your test code is being executed directly in the browser, always double check that your code will support **all** browsers under test by default. You can check whether something is supported by going to [here](https://caniuse.com/). Eventually I will look to use something like [Babel](https://babeljs.io/) to compile code down which would help mitigate this.
+When creating tests, you also need to be mindful that IE11 does not support more modern flavours of JavaScript (e.g. template literals, arrow functions, asynchronous code etc.). Given your test code is being executed directly in the browser, always double check that your code will support **all** browsers under test by default. You can check whether something is supported by going to [here](https://caniuse.com/). Eventually I will look to use something like [Babel](https://babeljs.io/) to compile code down which would help mitigate this. Guidance for adding Babel to the project can be found [here](https://webdriver.io/docs/babel.html).
 
 ### Microsoft Edge (legacy) setup/support
 
@@ -55,7 +56,7 @@ javaArgs: [
 
 Note: by doing this it will not use the `edgedriver` currently managed by the `selenium-standalone` package (which as of 26/11/2019 is still using v17134) which doesn't seem to play well with WebdriverIO v5 onwards. Also, from testing it appears MS Edge doesn't handle multiple instances well (it loses the unique session ID when multiple instances opened), so by default this project is configured to only ever spawn 1 instance and run MS Edge tests synchronously (unless you change this).
 
-This may all change once the Chromium version of MS Edge is officially rolled out as the default Windows 10 (at some point in 2020) and will be updated as needed in future/the WebdriverIO project updates MS Edge support.
+MS Edge Chromium support coming soon.
 
 ### Chrome setup/support
 
