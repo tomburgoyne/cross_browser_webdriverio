@@ -30,7 +30,9 @@ describe("Example page - using a JSON data file to generate tests", () => {
         // you would not normally have taking a screenshot as a 'test' - this is just an example of doing it
         it(`Takes a screenshot of ${element.description}`, async () => {
             const el = await $(element.locator);
-            await el.saveScreenshot(`./results/${element.description}.png`);
+            await el.saveScreenshot(
+                `./results/wdio_${element.description}.png`,
+            );
         });
     });
 });

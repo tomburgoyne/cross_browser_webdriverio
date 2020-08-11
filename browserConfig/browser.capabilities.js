@@ -33,7 +33,8 @@ exports.browserCapabilities = {
     edge: {
         // for MS Edge (legacy), we ignore the version WebdriverIO supplies and use Windows optional feature version
         // this is handled in wdio.browsers.setup.js file in root of project
-        // it seems far more reliable restricting MS Edge to only 1 instance
+        // it seems far more reliable restricting MS Edge (legacy) to only 1 instance
+        // MS Edge Chromium support to be added in future
         maxInstances: 1,
         browserName: "MicrosoftEdge",
     },
