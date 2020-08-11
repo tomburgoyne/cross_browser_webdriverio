@@ -8,6 +8,9 @@ class ExamplePage extends Page {
         return $(".postHeaderTitle");
     }
     // define your page functions
+    /**
+     * Open WebdriverIO getting started page
+     */
     open() {
         super.open("docs/gettingstarted.html");
     }
