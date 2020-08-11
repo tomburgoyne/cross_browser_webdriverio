@@ -6,7 +6,8 @@
 
 * [Node.js](https://nodejs.org/en/) - v12 upwards (use latest LTS version)
 * [npm/cli](https://github.com/npm/cli) - v6 upwards (bundled with Node.js) - to update to latest stable release, run `npm install -g npm@latest`
-* [Java](https://java.com/en/download/) - v8 (required to use `selenium-standalone-server`)
+* [Java](https://java.com/en/download/) - v8 (required to use `selenium-standalone-service`)
+* The browsers you wish to test with (Chrome, Firefox etc.) must be installed on the machine running the tests
 
 ## Main packages used
 
@@ -16,6 +17,14 @@
   * [@wdio/mocha-framework](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-mocha-framework) (v6.x.x)
   * [@wdio/selenium-standalone-service](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-selenium-standalone-service) (v6.x.x)
   * [@wdio/spec-reporter](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-spec-reporter) (v6.x.x)
+
+## Example tests
+
+This project has examples of tests written for a number of public websites (to give you a flavour of what you could).
+
+The websites tested include:
+* [WebdriverIO 'Getting Started' page](https://webdriver.io/docs/gettingstarted.html) - the getting started page from the official WebdriverIO documentation
+* [SauceLabs 'Sauce Demo' site](https://www.saucedemo.com/) - a demo site created by SauceLabs
 
 ## Usage for WebdriverIO v6
 
@@ -36,17 +45,19 @@ Note - browser drivers are downloaded automatically at the point of first runnin
 
 ### Internet Explorer 11 setup/support (32 bit)
 
+The test examples included in this project will not work with IE11 due to its lack of support for modern flavours of JavaScript. However, all the configuration is included should you want to write IE11 compatible tests (this took a fair amount of research so I felt it worth including). See below for further information on how this could be remedied.
+
 Note - the 32 bit version of this driver is preferred and used in this project (as recommended [here](https://www.selenium.dev/downloads/)).
 
-There are a number of things needing to be configured to run tests successfully in IE11. Firstly, in 'Internet Options' > 'Security' tab set all your levels for each zone to the same security level (e.g. 'Medium'). You also need to **disable** 'Enhanced Mode' on **all zones** or have it set to the same level across **all zones**. The test runner will not run tests if it detects any zone is not disabled.
+Should you wish to write IE11 supported tests, there are a number of things needing to be configured to run tests successfully in IE11. Firstly, in 'Internet Options' > 'Security' tab set all your levels for each zone to the same security level (e.g. 'Medium'). You also need to **disable** 'Enhanced Mode' on **all zones** or have it set to the same level across **all zones**. The test runner will not run tests if it detects any zone is not disabled.
 
 There are a number of other suggested setting tweaks and registry edits for the host machine running the tests. See [here](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver#required-configuration) for offical guidance.
 
-When creating tests, you also need to be mindful that IE11 does not support more modern flavours of JavaScript (e.g. template literals, arrow functions, asynchronous code etc.). Given your test code is being executed directly in the browser, always double check that your code will support **all** browsers under test by default. You can check whether something is supported by going to [here](https://caniuse.com/). Eventually I will look to use something like [Babel](https://babeljs.io/) to compile code down which would help mitigate this. Guidance for adding Babel to the project can be found [here](https://webdriver.io/docs/babel.html).
+As noted above, when creating tests you also need to be mindful that IE11 does not support more modern flavours of JavaScript (e.g. template literals, arrow functions, asynchronous code/promises etc.). Given your test code is being executed directly in the browser, always double check that your code will support **all** browsers under test by default. You can check whether something is supported by going to [here](https://caniuse.com/). Eventually I will look to use something like [Babel](https://babeljs.io/) to compile code down which would help mitigate this. Guidance for adding Babel to the project can be found [here](https://webdriver.io/docs/babel.html).
 
 ### Microsoft Edge (legacy) setup/support
 
-Due to changes made by Microsoft in 2018, there are a number of things needing doing to execute tests successfully using Edge (see [here](https://blogs.windows.com/msedgedev/2018/06/14/webdriver-w3c-recommendation-feature-on-demand/#0q5AAJXB76iei8zE.97)). For Windows 10, you will need to enable 'Developer' mode which by default will install/enable the optional feature 'WebDriver'. By doing this and providing the following to `javaArgs` in the wdio.conf.js file. By doing this and providing the following to `javaArgs` in the wdio.conf file (see `wdio.browsers.setup.js` which has this done by default/is a handy wrapper for wdio configuration).
+Due to changes made by Microsoft in 2018, there are a number of things needing doing to execute tests successfully using Edge (see [here](https://blogs.windows.com/msedgedev/2018/06/14/webdriver-w3c-recommendation-feature-on-demand/#0q5AAJXB76iei8zE.97)). For Windows 10, you will need to enable 'Developer' mode which by default will install/enable the optional feature 'WebDriver'. By doing this and providing the following to `javaArgs` in the wdio.conf file things should work (see `wdio.browsers.setup.js` which has this done by default/is a handy wrapper for wdio configuration).
 
 ```javascript
 javaArgs: [
@@ -54,9 +65,9 @@ javaArgs: [
 ]
 ```
 
-Note: by doing this it will not use the `edgedriver` currently managed by the `selenium-standalone` package (which as of 26/11/2019 is still using v17134) which doesn't seem to play well with WebdriverIO v5 onwards. Also, from testing it appears MS Edge doesn't handle multiple instances well (it loses the unique session ID when multiple instances opened), so by default this project is configured to only ever spawn 1 instance and run MS Edge tests synchronously (unless you change this).
+Note: by doing this it will not use the `edgedriver` currently managed by the `selenium-standalone-service` package (which as of 26/11/2019 is still using v17134) which doesn't seem to play well with WebdriverIO v5 onwards. Also, from testing it appears MS Edge doesn't handle multiple instances well (it loses the unique session ID when multiple instances opened), so by default this project is configured to only ever spawn 1 instance and run MS Edge tests synchronously (unless you change this).
 
-MS Edge Chromium support coming soon.
+MS Edge Chromium support coming soon. See official Microsoft guidance for this [here](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium?tabs=javascript).
 
 ### Chrome setup/support
 
